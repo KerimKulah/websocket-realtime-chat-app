@@ -14,6 +14,17 @@ function showMessage(message) {
 function sendMessage() {
     const sender = document.getElementById('senderInput').value;
     const content = document.getElementById('contentInput').value;
+
+    if (!sender.trim()) {
+        alert('Lütfen adınızı girin!');
+        return;
+    }
+
+    if (!content.trim()) {
+        alert('Lütfen bir mesaj girin!');
+        return;
+    }
+
     const message =
         {
             sender: sender,
@@ -53,5 +64,11 @@ toggleBtn.addEventListener('click', () => {
 window.onload = () => {
     connect();
     document.getElementById('sendBtn').addEventListener('click', sendMessage);
+    document.getElementById('contentInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
 };
 
